@@ -74,3 +74,93 @@ Want multiple layers of defense like:
 - Host - Auth, hardening, antivirus, scanning
 - Appplication - patching, auditing, pen test
 - Data - enrcryption, backups, auth
+
+# Cryptography
+
+## CIA Triad
+
+- **Confidentiality** - only those who should have access, can
+- **Integrity** - ensure data has not be modified by others
+  
+## Uses
+- store secrets
+- secure web traffic
+- secure auth - proving identities
+- digital signatures - prove things have not be modified
+- Non repudiation - prove that thing is from person and cannot be denied
+  
+
+## Terms
+
+**Clear Text** - unencrypted text
+
+**Cipher Text** - encrypted text
+
+**Encryption** - process of making clear text into cipher
+
+**Decryption** - process making cipher text into clear
+
+**Key** - what you use to convert clear text to cipher and reverse
+
+**Alogrithm(Cipher)** - steps of the encrpytion 
+
+**Encoding** - transforming data into other formats (not encrpytion, ex. base64)
+
+## PRinciples
+
+Security of cipher is based on key secrecy, not algorithms
+
+Need to be able to generate random bits securely for key gen
+-psuedo-random number generator (PRNG)
+
+**Forward Secrecy** - if long term exposed, previous comms should not also be exposed
+
+**Computational Security** - use algos + key sizes that ensure decryption is not feasible (time or computationally)
+
+**Key Size**
+
+key size != security
+
+256 bit security usually enough
+
+## Generating & Protecting Keys
+
+### Generating
+
+1. PRNG
+2. From Password - key derivation function - ex: PBKDF
+3. Key Agreement Protocol - ex. Diffie-Hellman
+
+### Protecting
+
+1. Key Wrapping - encrypt with another key
+2. Gen from password
+3. Store in Hardware - safest but expensive
+
+## Symmetric Encryption
+
+Same key for en/decryption
+
+Both parties must know key
+
+Algorithm - use **AES(Advanced Encryption Standard)**
+-only uses 128, 192, 256 bits only, but 256 is standard and secure enough
+
+### Block vs Stream
+
+**Stream** - encrypt bits one at a time (mostly hardware)
+
+**Block** - take a set number of bits 
+- CBC (Cipher Block Chaining) - feeds data into next block
+- GCM (Galois Counter Mode) - can run in parallel, use when possible
+
+**IV (Initialization Vector)** adds randomness, can store with data in clear
+
+### Downsides
+
+What if you send a message to unknown person? How do you securely get them a key? What if you don't trust them?
+
+Do you create a unique key for each person you communicate with?
+
+## Aysmmetric
+
