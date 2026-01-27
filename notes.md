@@ -12,14 +12,13 @@
 
 1. Confidentiality
    - only authorized user can view data
-   - user authorization and authentication 
+   - user authorization and authentication
 2. Inegrity
    - no unauthorized modificiations
    - ensure data is from source or sender
 3. Availability
    - systems and services are available
    - resilient against attacks, failures, compromises
-  
 
 ## DATA
 
@@ -31,12 +30,11 @@ stored files, data in database, physical folders/storage
 
 communicated through web, sent via netowrk. radio data (WiFi, Blueooth, NFC, LoRa, etc.)
 
-
 ## Threats, Vulnerabilities, Risks
 
 **Threats**
 
-something that can cause harm to system/services 
+something that can cause harm to system/services
 
 **Vulnerabilities**
 
@@ -54,7 +52,7 @@ possbility of threat happening
 2. Identify Threats - what can cause harm?
 3. Assess Vulnerabilities - which would have high impact
 4. Assess Risk - what is impact of the vulnerability? what can we accept?
-5. Mitigate Risks - how do we reduct risks? 
+5. Mitigate Risks - how do we reduct risks?
 
 ### Incident Response
 
@@ -64,10 +62,10 @@ possbility of threat happening
 4. Eradication - how to remove cause of incident
 5. Recovery - how to get back to functionality
 
-
 ## Defense in Depth
 
 Want multiple layers of defense like:
+
 - External network - VPN, logging, pen tests
 - Network Perimeter - firewalls, proxies, logging
 - Internal Network - IDS, IPS, logging
@@ -81,14 +79,14 @@ Want multiple layers of defense like:
 
 - **Confidentiality** - only those who should have access, can
 - **Integrity** - ensure data has not be modified by others
-  
+
 ## Uses
+
 - store secrets
 - secure web traffic
 - secure auth - proving identities
 - digital signatures - prove things have not be modified
 - Non repudiation - prove that thing is from person and cannot be denied
-  
 
 ## Terms
 
@@ -102,11 +100,11 @@ Want multiple layers of defense like:
 
 **Key** - what you use to convert clear text to cipher and reverse
 
-**Alogrithm(Cipher)** - steps of the encrpytion 
+**Alogrithm(Cipher)** - steps of the encrpytion
 
 **Encoding** - transforming data into other formats (not encrpytion, ex. base64)
 
-## PRinciples
+## Principles
 
 Security of cipher is based on key secrecy, not algorithms
 
@@ -150,7 +148,8 @@ Algorithm - use **AES(Advanced Encryption Standard)**
 
 **Stream** - encrypt bits one at a time (mostly hardware)
 
-**Block** - take a set number of bits 
+**Block** - take a set number of bits
+
 - CBC (Cipher Block Chaining) - feeds data into next block
 - GCM (Galois Counter Mode) - can run in parallel, use when possible
 
@@ -164,3 +163,58 @@ Do you create a unique key for each person you communicate with?
 
 ## Aysmmetric
 
+uses 2 keys - **Public** and **Private** - generate public from private
+
+Slower than symmetric, but allows others to send you messages using your public key
+
+Must keep private key safe
+
+### Popular Algorithms
+
+#### RSA (Ron Rivest, Adi Shamir, and Len Adleman)
+
+1024, 2048, 4096 bit keys (2048 bit is min)
+
+#### ECC (Elliptic Curve Cryptography)
+
+Family of algo, doesn't require as large keys
+
+#### DSS (Digital Signature Standard)
+
+Used for digital signatures
+
+#### ECDH (Diffie-Hellman Key Exchange)
+
+For exchanging symmetric key (session key)
+
+### Hashing (Integrity + Confidentiality)
+
+One way encryption, can't reverse it.
+
+used for signatures and "store" password (not safe to store in plain text)
+
+Algorithm: **SHA-2** - family of algo, can use SHA-256 or SHA-512
+
+* Don't use any other algos
+
+### Digital Signatures 
+
+essentially hash with asym encryption
+
+generate hash from message then sign it with your private key.
+
+used non-repudiation - guarentess who sent message
+
+Authenticate message
+
+### Password Storage
+
+**NEVER** store passwords in the clear
+
+**Minimum:** Hash + Salt
+
+#### Popular Algorithms
+
+* Argon2Id - should use
+* PBKDF2 - should use, FIPS-140 compliant, recommended by NIST
+* Bcrypt - don't use
