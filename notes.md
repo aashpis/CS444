@@ -10,13 +10,13 @@
 
 ## CIA Triad (Guiding Principles)
 
-1. Confidentiality
+**1. Confidentiality**
    - only authorized user can view data
    - user authorization and authentication
-2. Inegrity
+**2. Inegrity**
    - no unauthorized modificiations
    - ensure data is from source or sender
-3. Availability
+**3. Availability**
    - systems and services are available
    - resilient against attacks, failures, compromises
 
