@@ -169,6 +169,8 @@ Slower than symmetric, but allows others to send you messages using your public 
 
 Must keep private key safe
 
+**Keys need to adhere to min bit size**
+
 ### Popular Algorithms
 
 #### RSA (Ron Rivest, Adi Shamir, and Len Adleman)
@@ -191,11 +193,13 @@ For exchanging symmetric key (session key)
 
 One way encryption, can't reverse it.
 
-used for signatures and "store" password (not safe to store in plain text)
+**Confidentiality** used for signatures and "store" password (not safe to store in plain text)
 
 Algorithm: **SHA-2** - family of algo, can use SHA-256 or SHA-512
 
 * Don't use any other algos
+
+**Integrity** - we can re-run data through hash fxn to confirm data is untampered
 
 ### Digital Signatures 
 
@@ -213,8 +217,23 @@ Authenticate message
 
 **Minimum:** Hash + Salt
 
+
+#### Rainbow Attacks Sec 
+
+Rainbow Tables: use common passwords to pre-calc hash to figure out hashed passwords
+
+##### Salt: unique random string added to each password (stored with password)
+##### Pepper: unique random string that all passwords share (kept secret)
+
 #### Popular Algorithms
 
 * Argon2Id - should use
-* PBKDF2 - should use, FIPS-140 compliant, recommended by NIST
+* PBKDF2 - should use, FIPS-140 compliant, recommended by NIST. Can derive key from password. Both hash and key gen
 * Bcrypt - don't use
+
+
+## Secure Key Gen and Password Storage 
+1. Generate salt with secure random number
+2. Use salt to gen key
+3. 
+
