@@ -11,14 +11,15 @@
 ## CIA Triad (Guiding Principles)
 
 **1. Confidentiality**
-   - only authorized user can view data
-   - user authorization and authentication
-**2. Inegrity**
-   - no unauthorized modificiations
-   - ensure data is from source or sender
-**3. Availability**
-   - systems and services are available
-   - resilient against attacks, failures, compromises
+
+- only authorized user can view data
+- user authorization and authentication
+  **2. Inegrity**
+- no unauthorized modificiations
+- ensure data is from source or sender
+  **3. Availability**
+- systems and services are available
+- resilient against attacks, failures, compromises
 
 ## DATA
 
@@ -119,7 +120,7 @@ Need to be able to generate random bits securely for key gen
 
 key size != security
 
-256 bit security usually enough
+**256 bit** security is the standard. less is too weak, more is not need (for now)
 
 ## Generating & Protecting Keys
 
@@ -141,7 +142,7 @@ Same key for en/decryption
 
 Both parties must know key
 
-Algorithm - use **AES(Advanced Encryption Standard)**
+Algorithm - use **AES(Advanced Encryption Standard) with 256**
 -only uses 128, 192, 256 bits only, but 256 is standard and secure enough
 
 ### Block vs Stream
@@ -163,7 +164,7 @@ Do you create a unique key for each person you communicate with?
 
 ## Aysmmetric
 
-uses 2 keys - **Public** and **Private** - generate public from private
+**Uses 2 keys** - **Public** and **Private** - generate public from private
 
 Slower than symmetric, but allows others to send you messages using your public key
 
@@ -201,7 +202,7 @@ Algorithm: **SHA-2** - family of algo, can use SHA-256 or SHA-512
 
 **Integrity** - we can re-run data through hash fxn to confirm data is untampered
 
-### Digital Signatures 
+### Digital Signatures
 
 essentially hash with asym encryption
 
@@ -215,15 +216,22 @@ Authenticate message
 
 **NEVER** store passwords in the clear
 
-**Minimum:** Hash + Salt
+**Minimum:** Hash + Salt, but use pepper
 
-
-#### Rainbow Attacks Sec 
+#### Rainbow Attacks Sec
 
 Rainbow Tables: use common passwords to pre-calc hash to figure out hashed passwords
 
+#### Adding Randomness for Security:
+
 ##### Salt: unique random string added to each password (stored with password)
+
+* You need to use it to derive the key to decrypt data
+* usually prepended
+
 ##### Pepper: unique random string that all passwords share (kept secret)
+
+##### Initialization Vector(IV): Add randomness to symmetric
 
 #### Popular Algorithms
 
@@ -231,9 +239,23 @@ Rainbow Tables: use common passwords to pre-calc hash to figure out hashed passw
 * PBKDF2 - should use, FIPS-140 compliant, recommended by NIST. Can derive key from password. Both hash and key gen
 * Bcrypt - don't use
 
+#### PBKDF2 (**Password-Based Key Derivation Function**)
 
-## Secure Key Gen and Password Storage 
-1. Generate salt with secure random number
-2. Use salt to gen key
-3. 
+Use a password (like user input) to derive a key for encrpytion.
 
+Add salt to make it more random.
+
+Iteratively hash (**Key Stretching**) the passwords+salt (~600,000) then stores the final hash  (**Derived Key**).
+
+Make it's computationally expensive to crack
+
+## Secure Key Gen and Password Storage
+
+1. Generate salt with secure random number generator (`SecureRandom()`)
+2. Convert Salt to bytes
+3. Input password
+4. Derive a key using password + salt + 600,000 hash iterations
+5. Input message
+6. Encrypt using key
+7. Base64 encode to share
+8. Same for decrypt, but decode Base64 encrpyted data before decryption
