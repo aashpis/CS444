@@ -635,7 +635,7 @@ Cryptogtaphic signatures added to DNS records - public/private key pairs
 
 Spoof IP address
 
-**DOS-esque attack:** Ask DNS for any response repeatedly - route to victim 
+**DOS-esque attack:** Ask DNS for any response repeatedly - route to victim
 
 ### TXT Records Attacks
 
@@ -645,12 +645,13 @@ TXT records allow for DNS admins to enter tet notes into DNS
 ## IP Troubleshooting and Discovery
 
 Tools:
+
 - `ping hostname|ip` - ping host/ip address
 - `tcptraceroute hostname | ip` - find route on network
 - `tracepath hostname | ip` - find route
 - `nc host port` - can connect to service. nc = netcat
 - whois.com - find who owns domain
-...
+  ...
 
 ## Routers vs Swtiches
 
@@ -697,7 +698,7 @@ Now our "shared line" is wifi
 
 Send fake data packets with diff MAC address to switch until it's MAC address table runs out of memory
 
-Then switch enters "fail-open" mode then any new packet is sent to every port 
+Then switch enters "fail-open" mode then any new packet is sent to every port
 
 ## Network Security Devices
 
@@ -710,17 +711,19 @@ Block IPs and/or ports
 
 Placed at point where level of trust changes
 
-Both network and host based firewall 
+Both network and host based firewall
+
 - home router acts a firewall
 
 Types:
+
 - Packet Filter
 - Stateful Packet Inspection
 - Deep Packet Insepction
 
 #### Packet Firewall
 
-examines packet destination IP, port, and protocol 
+examines packet destination IP, port, and protocol
 
 #### Stateful Packet Inspection
 
@@ -728,7 +731,7 @@ Examines traffic from connection and tracks connection via state table
 
 Once connection (TCP) closes, any new traffic needs to make a new connection using TCP
 
-#### Deep Packet Inspection 
+#### Deep Packet Inspection
 
 Analyze content of traffic, more than just origin and destination
 
@@ -740,22 +743,22 @@ Privacy issue if data is opened - not really issue if encrypted (like TLS)
 
 Traffic passes through areas where trust changes
 
-Create network zones seperate by firewalls: 
+Create network zones seperate by firewalls:
+
 - DMZ
 - Internal Network
 - Application
 - Data
-- Database 
+- Database
 - Employee and systems
 - Dev and Prod environments
 - Etc.
 
 Internal Network | firewall | Webserver (DMZ) | firewall | Internet
- 
 
 ### Proxy Server
 
-Acts as intermediary gateway between devices. 
+Acts as intermediary gateway between devices.
 
 Middleman for client, sends requests and retrieves responses for client
 
@@ -763,12 +766,10 @@ used in Application
 
 **Reverse Proxy** - sit in front of web servers and takes client requests and forwards them to appropriate location.
 
-Proxy - works for client 
+Proxy - works for client
 Reverse Proxy - works for server
 
-
 ### Intrusion Detection System (IDS)
-
 
 Monitors network, hosts, apps and tries to detect attacks based on certain signature or anomaly
 
@@ -777,18 +778,17 @@ Monitors network, hosts, apps and tries to detect attacks based on certain signa
 
 hardware or software
 
-
 #### Intrusion Prevention System (IPS)
 
-Detects and prevents intrusion 
+Detects and prevents intrusion
 snort.org - IPS tool
-
 
 ### Honeypot
 
-Attract attackers to a system with counter measures 
+Attract attackers to a system with counter measures
+
 - false data
-- traps 
+- traps
 
 ## Network Access
 
@@ -818,12 +818,33 @@ SFTP/SCP not FTP
 
 ## Email Security
 
+### DomainKeys Identified Mail(DKIM)
 
+use digital signature in header to sign emails that come from a domain
+
+public key stored in DNS
+
+### Sender Policy Framework (SPF)
+
+Specificy which servers emails are sent from 
+
+Store in DNS as TXT
+
+### Domain-based Message Authentication Reporting adn Conformance (DMARC)
+
+Specifies policy if DKIM or SPF fails - ex. quarantine email
+
+## Packet Capture - Man in The Middle (MITM)
+
+capturing IP packets for review/analysis
+
+But malicious actor (MITM) can capture and modify traffic 
 
 ## NetSec Recap:
 
-protocols can be attacked
-
-IPs can be spoofed
-
-use secure
+* protocols can be attacked - use secure protocol
+* Use Network Zones
+* Authenticate nodes
+* IPs can be spoofed
+* Close any doors (ports, services, etc) that don't need to be open
+* Regularly scan network
