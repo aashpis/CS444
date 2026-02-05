@@ -74,7 +74,7 @@ Want multiple layers of defense like:
 - Appplication - patching, auditing, pen test
 - Data - enrcryption, backups, auth
 
-# Cryptography
+# 2 - Cryptography
 
 ## CIA Triad
 
@@ -301,7 +301,7 @@ Make it's computationally expensive to crack
 7. Base64 encode to share
 8. Same for decrypt, but decode Base64 encrpyted data before decryption
 
-# Certificates
+# 3- Certificates
 
 ## Main Uses:
 
@@ -431,7 +431,7 @@ why encrypt hash with private key - digital signature, verify data was not modif
 
 OWASP cheat cheat
 
-# Network Security - 02-03-2026
+# 4 - Network Security
 
 **Network:** some group of communicating computers or hosts
 
@@ -595,19 +595,99 @@ DDoS by spoofing IP address
 
 ## Ports
 
-IP determines endpoint, **Port** determines application or service 
+IP determines endpoint, **Port** determines application or service
 
 * In vs out going traffic
 * protocol (HTTP vs FTP vs SSH etc.)
 
 each open port is opportunity for attack
 
-cmd **nmap** - scan for open ports
+cmd **nmap** - scan for open ports, IPs, OS/software version
 
 ## Domain Network Services (DNS)
 
 naming system for computers, services, whatever that is connected to internet - "phonebook" of internet
 
+Within Application Layer - Protocol and System
+
+System is a hiearchy of DNS servers, based on authority
+
+Root DNS Server > DNS server for .com, .org, .edu etc, > org DNS server (yahoo.com, pbs.org, case.edu)
+
+Listens to Port 53
+
 maps IP addresses and other data to Domain Names. easier to know domain name over IP address
 
 Request made over UDP
+
+https://dnsdumpster.com/ - scan domain name for associated servers and IPs
+
+### DNSSEC
+
+Cryptogtaphic signatures added to DNS records
+
+Can verify domain name comes from a real auth server and not malicious server
+
+create public/private keys
+
+### Attacking DNS
+
+Spoof IP address
+
+Ask DNS for any response - route to victim
+
+### Other Attacks
+
+Can put malware into TXT records
+
+## IP Troubleshooting and Discovery
+
+...
+
+## Routers vs Swtiches
+
+## Datalink Layer
+
+## Ethernet
+
+protocol for transmiting on network 
+
+Previosly used shared line - had to listen and worry about collusion
+
+Now our "shared line" is wifi
+
+### Attack: ARP Spoofing
+
+### Attack: MAC Flooding
+
+## Network Security Devices
+
+### Firewalls
+
+#### Packet Firewall
+
+#### Stateful and Packet Insepction Firewall
+
+#### Network Zoning
+
+"front door" to internet
+
+### Proxy Server
+
+### IDS
+
+snort - tool
+
+### Honeypot
+
+## Network Access
+
+## Email Security
+
+## NetSec Recap:
+
+protocols can be attacked
+
+IPs can be spoofed
+
+use secure
