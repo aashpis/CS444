@@ -1,3 +1,5 @@
+e DNS
+
 # 1 - Intro to Compsec
 
 ## Security Ideals
@@ -606,83 +608,217 @@ cmd **nmap** - scan for open ports, IPs, OS/software version
 
 ## Domain Network Services (DNS)
 
-naming system for computers, services, whatever that is connected to internet - "phonebook" of internet
+Within Application Layer - Protocol and System - crticial role in internet layer
 
-Within Application Layer - Protocol and System
-
-System is a hiearchy of DNS servers, based on authority
-
-Root DNS Server > DNS server for .com, .org, .edu etc, > org DNS server (yahoo.com, pbs.org, case.edu)
-
-Listens to Port 53
+naming system for computers, services, whatever that is connected to internet - "phonebook" of internet.
 
 maps IP addresses and other data to Domain Names. easier to know domain name over IP address
 
-Request made over UDP
+Listens to Port 53
 
-https://dnsdumpster.com/ - scan domain name for associated servers and IPs
+### DNS Hiearchy
+
+System is a hiearchy of DNS servers, based on authority
+
+* Root DNS Server > DNS server for .com, .org, .edu etc, > org DNS server (yahoo.com, pbs.org, case.edu)
+* All public sites must provide an authoritative DNS server
 
 ### DNSSEC
 
-Cryptogtaphic signatures added to DNS records
+How do we know the response is from DNS Server?
 
 Can verify domain name comes from a real auth server and not malicious server
 
-create public/private keys
+Cryptogtaphic signatures added to DNS records - public/private key pairs
 
 ### Attacking DNS
 
 Spoof IP address
 
-Ask DNS for any response - route to victim
+**DOS-esque attack:** Ask DNS for any response repeatedly - route to victim 
 
-### Other Attacks
+### TXT Records Attacks
 
-Can put malware into TXT records
+Can put malware or commands into TXT records
+TXT records allow for DNS admins to enter tet notes into DNS
 
 ## IP Troubleshooting and Discovery
 
+Tools:
+- `ping hostname|ip` - ping host/ip address
+- `tcptraceroute hostname | ip` - find route on network
+- `tracepath hostname | ip` - find route
+- `nc host port` - can connect to service. nc = netcat
+- whois.com - find who owns domain
 ...
 
 ## Routers vs Swtiches
 
+### Routers
+
+make up internet core
+
+Determines where to send packets based on routing info, calculates best route with algos
+
+uses IP address and traffic data
+
+### Switches
+
+used for local networks
+
+determines where to send within local comps, no route calc, all comps have direct connection
+
+Uses MAC address
+
 ## Datalink Layer
+
+focus on transmitting packets within network - local transfer
+
+uses MAC address - each one unique to network card
+
+can "clone" address
+
+commands: `ip addr` and `arp -a`
 
 ## Ethernet
 
-protocol for transmiting on network 
+protocol for transmiting on network
 
-Previosly used shared line - had to listen and worry about collusion
+Previosly used shared line - had to listen for comms before sending
+Had to wait after sedning to hear collisions
 
 Now our "shared line" is wifi
 
 ### Attack: ARP Spoofing
 
+**Spoofing MAC Address:** Broadcast to another device that your MAC address is someone else's
+
 ### Attack: MAC Flooding
+
+Send fake data packets with diff MAC address to switch until it's MAC address table runs out of memory
+
+Then switch enters "fail-open" mode then any new packet is sent to every port 
 
 ## Network Security Devices
 
+Devices and software that help secure a network
+Follows principle of "defense in depth"
+
 ### Firewalls
+
+Block IPs and/or ports
+
+Placed at point where level of trust changes
+
+Both network and host based firewall 
+- home router acts a firewall
+
+Types:
+- Packet Filter
+- Stateful Packet Inspection
+- Deep Packet Insepction
 
 #### Packet Firewall
 
-#### Stateful and Packet Insepction Firewall
+examines packet destination IP, port, and protocol 
+
+#### Stateful Packet Inspection
+
+Examines traffic from connection and tracks connection via state table
+
+Once connection (TCP) closes, any new traffic needs to make a new connection using TCP
+
+#### Deep Packet Inspection 
+
+Analyze content of traffic, more than just origin and destination
+
+Privacy issue if data is opened - not really issue if encrypted (like TLS)
 
 #### Network Zoning
 
 "front door" to internet
 
+Traffic passes through areas where trust changes
+
+Create network zones seperate by firewalls: 
+- DMZ
+- Internal Network
+- Application
+- Data
+- Database 
+- Employee and systems
+- Dev and Prod environments
+- Etc.
+
+Internal Network | firewall | Webserver (DMZ) | firewall | Internet
+ 
+
 ### Proxy Server
 
-### IDS
+Acts as intermediary gateway between devices. 
 
-snort - tool
+Middleman for client, sends requests and retrieves responses for client
+
+used in Application
+
+**Reverse Proxy** - sit in front of web servers and takes client requests and forwards them to appropriate location.
+
+Proxy - works for client 
+Reverse Proxy - works for server
+
+
+### Intrusion Detection System (IDS)
+
+
+Monitors network, hosts, apps and tries to detect attacks based on certain signature or anomaly
+
+**Signature** - like an antivirus
+**Anomaly** - traffic or activity on network or system
+
+hardware or software
+
+
+#### Intrusion Prevention System (IPS)
+
+Detects and prevents intrusion 
+snort.org - IPS tool
+
 
 ### Honeypot
 
+Attract attackers to a system with counter measures 
+- false data
+- traps 
+
 ## Network Access
 
+### Wireless
+
+uses WPA2 or WPA3 - **NOT WEP**
+
+Tools to attack: Kismet, Aircrack-Ng
+
+### VPN
+
+create secure connections between two points
+
+usually for accessing org/system resources when offsite
+
+### Network Swtiches
+
+Should authenticate clients connected to network
+
+Do not allow access via ethernet
+
+### Use Secure Protocols
+
+SSH not Telnet
+
+SFTP/SCP not FTP
+
 ## Email Security
+
+
 
 ## NetSec Recap:
 
