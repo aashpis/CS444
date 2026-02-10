@@ -606,6 +606,8 @@ each open port is opportunity for attack
 
 cmd **nmap** - scan for open ports, IPs, OS/software version
 
+**Port 443 -** open port to internet
+
 ## Domain Network Services (DNS)
 
 Within Application Layer - Protocol and System - crticial role in internet layer
@@ -723,13 +725,17 @@ Types:
 
 #### Packet Firewall
 
-examines packet destination IP, port, and protocol
+examines packet destination - **IP, port, and protocol**
+
+easier to implement, less secure
 
 #### Stateful Packet Inspection
 
-Examines traffic from connection and tracks connection via state table
+Examines traffic by **connection** and tracks connection via state table
 
 Once connection (TCP) closes, any new traffic needs to make a new connection using TCP
+
+harder to implement, but more secure
 
 #### Deep Packet Inspection
 
@@ -781,7 +787,7 @@ hardware or software
 #### Intrusion Prevention System (IPS)
 
 Detects and prevents intrusion
-snort.org - IPS tool
+**snort.org - IPS tool**
 
 ### Honeypot
 
@@ -826,7 +832,7 @@ public key stored in DNS
 
 ### Sender Policy Framework (SPF)
 
-Specificy which servers emails are sent from 
+Specificy which servers emails are sent from
 
 Store in DNS as TXT
 
@@ -838,13 +844,61 @@ Specifies policy if DKIM or SPF fails - ex. quarantine email
 
 capturing IP packets for review/analysis
 
-But malicious actor (MITM) can capture and modify traffic 
+But malicious actor (MITM) can capture and modify traffic
+
+**Wireshark** - packet capture analysis tool
 
 ## NetSec Recap:
 
 * protocols can be attacked - use secure protocol
+  * https can protect from packet capture
+  * SFTP/SCP, not FTP
 * Use Network Zones
 * Authenticate nodes
 * IPs can be spoofed
 * Close any doors (ports, services, etc) that don't need to be open
 * Regularly scan network
+* Defense in depth - multiple layers of security
+  * firewall, network zones
+* DMZ - web server/proxy between internal and external internet
+
+# 5 - OS Security
+
+## Fundamentals
+
+* Log and Audit:
+  * gold standard Au (for gold) - **Au**thorization, **Au**thentication, **Au**diting
+  * scan OS and SW periodically
+* keep SW and OS updated
+  * `sudo apt update <package>`
+* remove unnecessary services
+* Principle of Least Priviledge
+* Change default configs and accounts
+* 
+
+## Software
+
+* Install from reliable source
+  * using `apt` ex. `sudo apt install <package>`  
+* Check and install updates
+* Removed unused software - each SW is a potential vul
+
+Disabling is removing, just stops it from starting on boot
+
+`apt remove <package>` - removes package
+`apt autoremove` - removes package AND dependencies
+
+### Supply chain attack
+
+compromise package/dependency that is used rather the the application/service itself
+
+## Services
+
+* Regularly check, update, and, when applicable, remove services
+* `systemctl` - check and manage system services
+* Disable stops from starting at boot
+* Unistalls removes it from OS
+
+## Apply Least Privilege
+
+always give the least amount of access to a user
