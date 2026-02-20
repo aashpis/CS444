@@ -5,6 +5,7 @@ cm
 `pwd` - lists current working directory
 
 `ls [PATH]` - list files in current dir
+
 - `ls -l` - list files and permissiosn
 - `ls -a` - see hidden files
 
@@ -14,18 +15,17 @@ cm
 
 `.` - current dir
 
-`..` - one dir up 
+`..` - one dir up
 
 `~` - home dir of user
 
 `/` - root dir
 
 `*` - Wildcard, can be mixed in pathnames or filenames
+
 - ex: `rm *.c` removes all files that end with `.c`
 
-
 # File Access and Read
-
 
 `cat <FILE>` - show contents of file
 
@@ -45,14 +45,15 @@ If you want to monitor any new input on a file, you will want to do a tail-f on 
 
 # File Permissions
 
-3 Permissions - Read, Write, Execute 
+3 Permissions - Read, Write, Execute
 
 Represented by 3 bits: rwx
+
 - 4 (r) = read
 - 2 (w) = write
 - 1 (x) = execute
 
-`ls -l` - list permissions 
+`ls -l` - list permissions
 
 `-rwxr-xr--` - how permissions are represented
 
@@ -67,7 +68,7 @@ use `chmod` to adjust permission of owner, group, and other using single value f
 
 `chmod 760 file.txt` - rwx to owner, rw to group, none to others
 
-## Add or Set File Permissions 
+## Add or Set File Permissions
 
 `chmod u+x test` - add execute perm to user
 
@@ -104,6 +105,8 @@ To print out environment variable `echo $PS1`
 
 `uname` - List information on OS you are on
 
+`systemd` - manages systems and services
+
 `cat /etc/os-release` - Shows information about the current OS
 
 `sudo apt upgrade` - install updates
@@ -121,9 +124,17 @@ To print out environment variable `echo $PS1`
 `apt autoremove` - removes package and dependencies
 
 `sudo apt list` - list the available, installed, and upgradable packages
+
 - `--installed` - add flag to show installed ones
 - `--upgradeable` - add flag to show upgradable ones
 
+## Logs
+
+`journalctl` - view and manage system logs
+
+Auth log shows all auth and login attempts is found at: `/var/log/auth.log`
+
+`tail -f auth.log `- show last access
 
 ## Services
 
@@ -143,14 +154,13 @@ To print out environment variable `echo $PS1`
 
 `restart` - restart
 
-`reload` - reload service config 
-
+`reload` - reload service config
 
 # Network
 
 `ip addr` - list info about network interface and IP
 
-`​arp -a`
+`arp -a`
 
 `host <name>` - retrieves IP for given name
 
@@ -169,8 +179,6 @@ To print out environment variable `echo $PS1`
 `wireshark` - packet analysis and capture
 
 # SSH
-
-
 
 # Misc. Useful Commands
 

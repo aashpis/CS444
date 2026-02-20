@@ -14,7 +14,7 @@
 
 - only authorized user can view data
 - user authorization and authentication
-  **2. Inegrity**
+- **2. Inegrity**
 - no unauthorized modificiations
 - ensure data is from source or sender
   **3. Availability**
@@ -518,7 +518,7 @@ ensuring packets get from one point to another
 
 Protocols: TCP and UDP
 
-### Transport Connection Protocol (TCP)
+### TCP - Transport Connection Protocol
 
 One Sender, One reciever
 
@@ -741,6 +741,10 @@ Analyze content of traffic, more than just origin and destination
 
 Privacy issue if data is opened - not really issue if encrypted (like TLS)
 
+#### UFW - Uncomplicated Firewall
+
+user friendly firewall thats easy to implement
+
 #### Network Zoning
 
 "front door" to internet
@@ -808,7 +812,7 @@ create secure connections between two points
 
 usually for accessing org/system resources when offsite
 
-### Network Swtiches
+### Network Switches
 
 Should authenticate clients connected to network
 
@@ -903,11 +907,10 @@ always give the least amount of access to a user
 
 ## SSH
 
-create ssh keys
-
 * do not permit rootlogin via ssh
 * what is pub/priv key interaction?
 * lock down who can ssh into system, what permissions they have and what IPs could ssh into a server
+* Use key auth not password
 
 ## Change Defaults
 
@@ -917,15 +920,25 @@ default configs for software can be insecure
 
 ## Log and Audit
 
-OS have central logging system
+OS have central logging system.
+
+Monitor logs for sus activity
+
+Some packages have their own logs - apache has its own log
 
 **Log aggregators** - pull logs from diff sources
 
 * ex. **Splunk**
 
+`journalctl` - view and manage system logs
+
+Auth log shows all auth and login attempts is found at: `/var/log/auth.log`
+
+`tail -f auth.log `- show last access
+
 ## Periodic Scanning
 
-use tools to discover sw and services on machines 
+use tools to discover sw and services on machines
 
 - nmap, OpenVAS
 
@@ -942,3 +955,61 @@ careful with tools that can exploit server
 **OS Firewall** - configure firewall rules on the OS
 
 **Automated Services -** use services to automate security
+
+## Containers
+
+containers - need to put everything in since it can be outside
+
+`chroot` - change root - use to change root dir for current process and its children. Creates a container, nothing inside cant see outside root.
+
+`cgroups` - limit access to comp resources, prevent DoS
+
+## Malware
+
+umbrella for all malicious software
+
+* virus, trojan, etc.
+
+### Virus
+
+spreads and self replicates
+
+Can be sent in email, embedded within SW, on USB
+
+Easy to send emails with APIs
+
+Ex. WannaCry - ransomware
+
+### Trojan Horse
+
+taking any malware and mask it as legit SW
+
+could install key logger or open a backdoor
+
+### Spyware
+
+monitors device - such as web activity, key logger, webcam
+
+transmit data to another server
+
+some apps misuse permission - kinda spyware even if legit
+
+### Phishing
+
+sending email to an org to have a user install sofrware, click a malicious link, imitate a legit site to steal personal data
+
+**Spear-Phishing -** target a specific person
+
+- using whois service, company web pages, LinkedIn
+
+### What Can You Do?
+
+use antivirus
+
+don't open sus attachments
+
+verify senders
+
+only install software from trusted sources
+
+### Scenario
