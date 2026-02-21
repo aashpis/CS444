@@ -57,7 +57,7 @@ Represented by 3 bits: rwx
 
 `-rwxr-xr--` - how permissions are represented
 
-- char 1: `-` file or `d` for directory
+- char 1: `-` for file or `d` for directory
 - char 2-4: Owner permission
 - char 5-7: Group permission
 - char 8-10: Other permission
@@ -177,6 +177,15 @@ Auth log shows all auth and login attempts is found at: `/var/log/auth.log`
 `nc host port` - can connect to service. nc = netcat
 
 `wireshark` - packet analysis and capture
+
+
+## IP Troubleshooting and Discovery
+
+- `ping hostname|ip` - ping host/ip address
+- `tcptraceroute hostname | ip` - find route on network
+- `tracepath hostname | ip` - find route
+- `nc host port` - can connect to service. nc = netcat
+- whois `<host>` - find who owns domain
 
 # SSH
 
