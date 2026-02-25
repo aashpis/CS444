@@ -6,6 +6,14 @@ implementation of password manager
 
 know common port numbers - https, ssh, ftp, http
 
+Port,Service,Description
+20/21,FTP,File transfer (Unencrypted).
+22,SSH,Secure Shell access (Your current focus).
+25,SMTP,Email routing between servers.
+53,DNS,Resolves domain names to IP addresses.
+80,HTTP,Unencrypted web traffic.
+443,HTTPS,Encrypted web traffic (SSL/TLS).
+
 ## Linux Cmds
 
 know what you can do with openssl
@@ -204,7 +212,6 @@ Understand differences in firewalls such as packet filter and stateful
 > stateful - examines and tracks connection. uses state table to keep track of connection
 >
 > deep packet analysis: analyzes content along with IP and port. privacy issues you need to read packet contents
->
 
 Understand basic ways of scanning a network and finding information about a network using whois, nmap, etc
 
@@ -233,17 +240,49 @@ Understand ways of verifying an email through email servers and signatures
 
 Understand principle of least privilege and how we can apply it in OS security
 
+> only give necessary access and as little as possible to users
+
 Understand important of updating packages, regularly checking services, checking logs, etc
+
+> update to make sure vulnerabilties are covered 
+>
+> See what services are running to make sure they're all valid. remove unneeded ones
+>
+> check logs to see what has been happning, who has been trying to access services
 
 How to harden an operating system and core software such as Apache and SSH
 
+> Apache: set up a firewall, create allowlist, set-up more zones within the server if hosting multiple services
+>
+> SSH: disable password auth, set the root dir outside of root of OS. use key authentication. limit login attempts. disable root login
+
 How to apply different permissions and their affect on regular files vs directories
+
+> chmod 
+>
+> usermod -a -G = add user to group
+>
+> chown `<file>` = change onwner
+>
+> chgrp `<file>` = change group
 
 How to setup firewall on the OS using ufw
 
+> ufw allow <http/https/ssh/80/443> - allow specific protocols or ports
+>
+> ufw allow from `<ip>`
+>
+> ufw enable
+
 What are the configuration file we would set on an operating system and where are they located on the operating system
 
+> /etc/security
+
 What do things like chroot and cgroups provide when it comes to security?
+
+> we can set a root so scripts or users are contained within a certain section
+>
+> cgroups enforces least priviledge by limiting user access based on their group
 
 ## Malware and Threats
 
