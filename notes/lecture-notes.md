@@ -14,10 +14,14 @@
 
 - only authorized user can view data
 - user authorization and authentication
-- **2. Inegrity**
+
+**2. Inegrity**
+
 - no unauthorized modificiations
 - ensure data is from source or sender
-  **3. Availability**
+
+**3. Availability**
+
 - systems and services are available
 - resilient against attacks, failures, compromises
 
@@ -154,7 +158,7 @@ No forward secrecy, key leaks allow for total decrypt
 
 ### Generating
 
-1. PRNG
+1. PRNG - psuedo random number generator
 2. From Password - key derivation function - ex: PBKDF
 3. Key Agreement Protocol - ex. Diffie-Hellman
 
@@ -206,6 +210,8 @@ Must keep private key safe
 
 1024, 2048, 4096 bit keys (2048 bit is min)
 
+4096 bits is about 128-150 bits sec (AES)
+
 #### ECC (Elliptic Curve Cryptography)
 
 Family of algo, doesn't require as large keys
@@ -218,7 +224,7 @@ Used for digital signatures
 
 For exchanging symmetric key (session key)
 
-### Hashing (Integrity + Confidentiality)
+#### Hashing (Integrity + Confidentiality)
 
 One way encryption, can't reverse it.
 
@@ -231,6 +237,16 @@ Algorithm: **SHA-2** - family of algo, can use SHA-256 or SHA-512
 **Integrity** - we can re-run data through hash fxn to confirm data is untampered
 
 Whatever is encrypted with the Private Key can *only* be decrypted by the corresponding Public Key.
+
+#### AES (Advanced Encryption Standard)
+
+also known as **Rijndael**
+
+Symmetric
+
+Standard is 256 bit Key
+
+Transforms data in multiple round
 
 ### Digital Signatures
 
@@ -502,9 +518,13 @@ focuses on delivery from source to destination - one IP address to another
 
 32 bit enough for ~4 Billion addresses
 
+format: 192.168.1.1
+
 #### IPv6
 
 128 bit
+
+hexidecimal format: 2001:0db8:85a3:0000:0000:8a2e:0370:7334
 
 ### Network Address Translation (NAT)
 
@@ -525,6 +545,22 @@ One Sender, One reciever
 Package Acknoledgement -  acknowledges when packets are received
 
 uses a "handshakes" to connect
+
+#### Packet Types:
+
+##### SYN (Synchronize)
+
+"hello" packet
+
+##### ACK (Acknowledge)
+
+confirms packet was recieved
+
+##### FIN (Finish)
+
+Data exchange is done. Both sides need to close it.
+
+Sending a FIN still allows for recieving
 
 #### Flow Controlled
 
@@ -606,6 +642,15 @@ cmd **nmap** - scan for open ports, IPs, OS/software version
 
 **Port 443 -** open port to internet
 
+| **Port**  | **Service** | **Description**                     |
+| --------------- | ----------------- | ----------------------------------------- |
+| **20/21** | **FTP**     | File transfer (Unencrypted).              |
+| **22**    | **SSH**     | Secure Shell access (Your current focus). |
+| **25**    | **SMTP**    | Email routing between servers.            |
+| **53**    | **DNS**     | Resolves domain names to IP addresses.    |
+| **80**    | **HTTP**    | Unencrypted web traffic.                  |
+| **443**   | **HTTPS**   | Encrypted web traffic (SSL/TLS).          |
+
 ## Domain Network Services (DNS)
 
 Within Application Layer - Protocol and System - crticial role in internet layer
@@ -681,14 +726,9 @@ can "clone" address
 
 commands: `ip addr` and `arp -a`
 
-## Ethernet
+### ARP - Address Resolution Protocol
 
-protocol for transmiting on network
-
-Previosly used shared line - had to listen for comms before sending
-Had to wait after sedning to hear collisions
-
-Now our "shared line" is wifi
+maps IP to MAC address
 
 ### Attack: ARP Spoofing
 
@@ -699,6 +739,15 @@ Now our "shared line" is wifi
 Send fake data packets with diff MAC address to switch until it's MAC address table runs out of memory
 
 Then switch enters "fail-open" mode then any new packet is sent to every port
+
+## Ethernet
+
+protocol for transmiting on network
+
+Previosly used shared line - had to listen for comms before sending
+Had to wait after sedning to hear collisions
+
+Now our "shared line" is wifi
 
 ## Network Security Devices
 
@@ -806,11 +855,13 @@ uses WPA2 or WPA3 - **NOT WEP**
 
 Tools to attack: Kismet, Aircrack-Ng
 
-### VPN
+### VPN - Virtual Private Network
 
 create secure connections between two points
 
 usually for accessing org/system resources when offsite
+
+encrypts your data traffic and sends it through a remote server.
 
 ### Network Switches
 
@@ -874,9 +925,9 @@ But malicious actor (MITM) can capture and modify traffic
 * keep SW and OS updated
   * `sudo apt update <package>`
 * remove unnecessary services
+  * `systemd` - tools for system and service management
 * Principle of Least Priviledge
 * Change default configs and accounts
-* 
 
 ## Software
 
@@ -946,7 +997,7 @@ careful with tools that can exploit server
 
 ## Other OS Security Areas
 
-**Data Execution Prevention (DEP)** - prevent non-text region of process from execyted
+**Data Execution Prevention (DEP)** - prevent non-text region of process from executed
 
 **Address Space Layout Randomization (ASLR)** - Prevent attacks that depend on items being loaded in specific areas in memory
 
