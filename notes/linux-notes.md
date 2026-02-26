@@ -25,6 +25,14 @@ cm
 
 - ex: `rm *.c` removes all files that end with `.c`
 
+# Users and Groups
+
+`sudo adduser <username>`
+
+`sudo groupadd <groupname>`
+
+`sudo usermod -a -G <group> <username>`
+
 # File Access and Read
 
 `cat <FILE>` - show contents of file
@@ -67,6 +75,8 @@ use `chmod` to adjust permission of owner, group, and other using single value f
 `chmod 700 file.txt` - rwx to owner, none all others
 
 `chmod 760 file.txt` - rwx to owner, rw to group, none to others
+
+`cgroups`
 
 ## Add or Set File Permissions
 
@@ -177,7 +187,6 @@ Auth log shows all auth and login attempts is found at: `/var/log/auth.log`
 `nc host port` - can connect to service. nc = netcat
 
 `wireshark` - packet analysis and capture
-
 
 ## IP Troubleshooting and Discovery
 
