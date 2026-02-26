@@ -1,3 +1,5 @@
+# Notes Until Exam 1
+
 # 1 - Intro to Compsec
 
 ## Security Ideals
