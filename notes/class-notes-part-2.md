@@ -21,7 +21,6 @@ keep it contained to target - manage host list
 * Use frameworks and best practices fro lang and platform - don't roll your own encrpytion, don't DIY validation mechanism
 * Do not exploit in production
 
-
 ### Challenges
 
 container environments (services, versions, languages) change constantly and significantly
@@ -89,7 +88,7 @@ target specific application
 
 **Static:** perform source code analysis (SCA). detect vul in code
 
-**Dynamic:** peform pen test on activiely running an application 
+**Dynamic:** peform pen test on activiely running an application
 
 #### Physical
 
@@ -97,7 +96,7 @@ testing physicaly security of a location
 
 #### Social Engineering
 
-targeting people/social relationships 
+targeting people/social relationships
 
 * Phishing, leaving USB drives around, asking someone to do a task
 
@@ -148,7 +147,7 @@ buffer is read or written from beyond designate bounds
 
 Can trigger when data is bigger than allocated space for it
 
-#### Heartbleed 
+#### Heartbleed
 
 TLS vul - heartbeat packets ("connection is still open" messages) could be manipulated to be smaller that they said. The server would then leak info in responses using that extramemory. 64kg is the size, so an attacker would hide that a packet is actually 1kg.
 
@@ -160,7 +159,7 @@ Software can be exploited if the timing of resoruce access is not controlled, ca
 
 Make sure code executes in the order it needs to.
 
-### Input Validation Attacks 
+### Input Validation Attacks
 
 *class focus*
 
@@ -189,7 +188,7 @@ Attacking Authentication mechanism
 
 ### Authorization Attacks
 
-attacker attempts to bypass authorization. 
+attacker attempts to bypass authorization.
 
 * access data that only specific users should - Role-based access control (RBAC)
 * bypass auth check with direct URL or on client side
@@ -249,3 +248,27 @@ attacking server, which inevitably affects clients
 Injection attacks, accessing residual files, arbritrary code execution, privledge escaltion (attacker increase level of auth beyond intended for a user)
 
 ## Key Takeaways
+
+3/3/26 - Notes
+
+In Class Zap Quesitons
+
+1. **Vulnerability assesment vs penetration tests:** Vulnerability assement - scan for existing vulnerabilities/sec within the system, Pen Test - simulate an attack
+2. **Passive vs Active Scan** Passive Safe scan scans application and doesn't change responses and requests. Active will try real attacks and can damage system, tries to modify responses and attack
+3. Passive scan is safe
+4. Yes, ZAP (active scan) is a real attack
+5. No, dont use on prod
+6. Why explore an app manually - attacks don't have credentials
+
+
+ZAP attack/use
+
+Content Security Policy (CSP)
+
+robots.txt - tell scrapers/bots where they can access (doesn't enforce, bots can go outside this)
+
+localhost/server-status - we can 
+
+Alert section - has vulnerablities and sec issues in this section
+
+Always can modify client-side requests/responses
