@@ -249,7 +249,7 @@ Injection attacks, accessing residual files, arbritrary code execution, privledg
 
 ## Key Takeaways
 
-3/3/26 - Notes
+3/3/26 + 3/5/26 - Notes
 
 In Class Zap Quesitons
 
@@ -260,15 +260,29 @@ In Class Zap Quesitons
 5. No, dont use on prod
 6. Why explore an app manually - attacks don't have credentials
 
-
 ZAP attack/use
 
 Content Security Policy (CSP)
 
 robots.txt - tell scrapers/bots where they can access (doesn't enforce, bots can go outside this)
 
-localhost/server-status - we can 
+localhost/server-status - we can
 
 Alert section - has vulnerablities and sec issues in this section
 
 Always can modify client-side requests/responses
+configure firefox - use local hostport 8080 for manual proxy, turn on hijacking
+
+Zap - history tab has request and response
+
+## SQLi
+
+"select userId from users where username = '$username' and password = '$password'"
+
+input username as `admin' or 1=1 -- ` 
+
+the first tick after admin closes the data string then adds 1=1 
+
+-- comments out the rest of it 
+
+`username = 'admin' or 1=1 ` is a tautology and always true
