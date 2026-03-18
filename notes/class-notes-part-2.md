@@ -279,10 +279,78 @@ Zap - history tab has request and response
 
 "select userId from users where username = '$username' and password = '$password'"
 
-input username as `admin' or 1=1 -- ` 
+input username as `admin' or 1=1 -- `
 
-the first tick after admin closes the data string then adds 1=1 
+the first tick after admin closes the data string then adds 1=1
 
--- comments out the rest of it 
+-- comments out the rest of it
 
 `username = 'admin' or 1=1 ` is a tautology and always true
+
+1=1 gets us first row
+
+
+# 3/17/2026
+
+make index.php file
+
+var/www/html/
+
+<html>
+<body>
+<?php 
+
+    function createGreeting($name){
+        return "Hello $name";
+    }
+
+    $who = "344" . " Class";
+    $greeting = creatGreeting($who);
+
+    $who = "344" . " Class";
+    echo "<h1>Hello $who!</h1>";
+
+    $regArray = array("A", "B", "A");
+    $aArray = array("name" => "Brian", "id" => 20); 
+
+    foreach($regArray as $grade){
+        echo "You got a $grade<br />";
+    }
+
+    foreach($aArray as $key=>$val){
+        echo "$key = $val<br />";
+    }
+    print_r($regArray);
+?>
+</body>
+</html>
+
+---
+
+login.php
+
+<?php
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+
+    // password is assignement not comparison
+    if ($username == "abc123" && $password = "secure") {  // $password == secure
+        echo "Welcome Ari"
+    }
+?>
+
+<form action="login.php" method="post">
+Username: <input type="text" name="username"/>
+Password: <input type="password" name="password"/>
+<button type="submit"></button>
+</form>
+
+---
+
+For test, you will examine code for vulnerabilities
+
+you can inject html code in a post
+
+---
+
