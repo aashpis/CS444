@@ -289,7 +289,6 @@ the first tick after admin closes the data string then adds 1=1
 
 1=1 gets us first row
 
-
 # 3/17/2026
 
 make index.php file
@@ -298,30 +297,30 @@ var/www/html/
 
 <html>
 <body>
-<?php 
+<?php
 
     function createGreeting($name){
         return "Hello $name";
     }
 
-    $who = "344" . " Class";
-    $greeting = creatGreeting($who);
+    $who = "344" . " Class";$greeting = creatGreeting($who);
 
     $who = "344" . " Class";
-    echo "<h1>Hello $who!</h1>";
+    echo "`<h1>`Hello $who!`</h1>`";
 
     $regArray = array("A", "B", "A");
-    $aArray = array("name" => "Brian", "id" => 20); 
+    $aArray = array("name" => "Brian", "id" => 20);
 
     foreach($regArray as $grade){
-        echo "You got a $grade<br />";
+        echo "You got a $grade`<br />`";
     }
 
     foreach($aArray as $key=>$val){
-        echo "$key = $val<br />";
+        echo "$key = $val`<br />`";
     }
     print_r($regArray);
 ?>
+
 </body>
 </html>
 
@@ -353,4 +352,218 @@ For test, you will examine code for vulnerabilities
 you can inject html code in a post
 
 ---
+
+# 3/19/2026
+
+## Gen AI 
+
+can generate vul code. 
+
+It is an assistant, your name is on your code you are responsible for it
+
+can also analyze code
+
+# OWASP Top 10 (Web, also mobile, IoT)
+
+## A01 - Broken Access Control
+
+Person is able to access data, pages, accounts that they shouldn't have time
+
+### Prevention
+
+- auth check on every request
+- permit/allowlists, deny all else
+- log failures
+
+### In Class Code Example:
+
+hidden input field to check for admin. Admin check is client side
+
+`<input type="hidden" name="isAdmin" value="<?=$user->isAdmin?>">`
+
+`->` in php is like a `.` (access a func/value)
+
+## A02 - Security Misconfiguration
+
+- default accounts/pw not changed
+- disclosing stack traces 
+- not hardening apps or os
+- uneeded services are running
+
+### Prevention
+
+- Log but don't disclose any info to attack/client
+- disable services that aren't needed
+- apply least priviledge
+- disable default error reporting
+- PHP - turn off error handling
+
+### In Class Exercise
+
+- Don't display errors to clients as it reveals info about system and can lead to exploits
+- Limit size or turn off file upload -> attackers can upload malicious files, zip bombs, DoS by continous upload
+- Turn off ability to execute external programs
+
+## A03 - Software Supply Chain Failure
+
+- attack supply chain, libraries that bring in software
+- code that brings in dependencies can be vul
+- secure code can use vulnerable libraries
+- monitor CVE and NVD (National Vulnerability Database)
+
+### SWBOM - Software Bill of Materials
+
+Tracks libraries used in SW
+
+### Supply Chain and CI/CD
+
+code AND supply chain should be analyzed on pushes to repo
+
+openSSF has tool to check supply chain
+
+## A04 - Crpytographic Failures
+
+- using weak algos (MD5)
+- not using salt
+- insecure num gen
+- storing secrets in the clear
+
+### Prevention 
+
+1. use most updated practices
+2. don't roll own encryption 
+
+### In Class code Excercise
+
+not md5, use PHP's password_hash()
+
+## A05 - Injection
+
+Broad category, includes SQLi, XSS, LDAP Injection
+
+user input not validated or sanitzed
+
+### Prevention
+
+- use frameworks/APIs for queries
+- always validate and sanitize, don't directly use user input
+
+
+### SQLi - SQL Injection
+
+- use parameterized queries/bind parameters
+- **don't concat strings directly into queries**
+
+### In-class code 
+
+PHP - use `prepare` and `bind_param` to create queries 
+
+`$sql = "INSERT INTO users (name, email, age, address, phone) VALUES ('$name', '$email', $age, '$address', '$phone')";`
+
+Don't give error data to client
+
+```PHP
+if ($stmt->execute()) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $stmt->error; // HERE
+}
+```
+
+### XSS - Cross Side Scripting
+
+user supplied data contains JavaScript that executes in browser
+
+2 Forms: Stored(persisted) vs Reflective
+
+#### Prevention
+
+- CSP - Content Security Policy. allowlsit for content 
+- Make sure no JS or HTML gets sent to user from database
+- Encode data on way out from persisted db, not on way in
+
+#### In-class code
+
+<h2> and <p> name and email could be injected with JS
+
+```PHP
+if ($result->num_rows > 0) {
+// Fetch and display each user's data
+    while ($user = $result->fetch_assoc()) {
+        echo '<div>';
+        echo '<h2>' . $user['name'] . '</h2>';
+        echo '<p>Email: ' . $user['email'] . '</p>';
+        echo '</div>';
+    }
+} else {
+    echo 'No users found.';
+}
+```
+
+Can inject via name, email. sql statement directly used with values no sanitation
+
+```PHP
+$sql = "SELECT id, name, email FROM users";
+$result = $mysqli->query($sql)
+```
+
+## A06 - Insecure Design
+
+very broad category - how code is designed and implementation, not the code itself
+- disclosing system info
+- no auth at endpoints
+- not applying least priviledge or defense in depth
+- no input validation
+
+### In-class code
+
+`echo "Error: " ` don't give full error message to user, shows `$stmt` and `phpinfo()` 
+
+## Other Vul
+
+### A07 - Auth Failures
+
+- weak passwords
+- default configs with default passwords
+- Session id in url
+- sessions not validated
+  
+### A08 - SW and Data Integrity Failure
+
+Using software without validating signature, libraries from untrusted repositories
+
+### A09 - Security 
+
+log events, but don't log sensitive info (user password)
+
+### A10 - Mishandling of Exceptional Conditions
+
+Handle errors, don't reveal stack traces or error data to client
+
+## Gen AI
+
+### Example 1
+
+- has string concat
+- giving user full error message
+- storing username and pw in code
+- not logging errors
+
+### Example 2
+
+- user name, pw stored in plain tet
+- connection error being revealed to user
+
+## Key Takeaways
+
+never trust user input
+
+use frameworks and lang best practices (ex. ORM)
+- shouldnt be writing raw SQL
+
+Stay up to date on new threats and vuls
+
+Monitor CVE and NVD
+
+continous review OWASP 
 
