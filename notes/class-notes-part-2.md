@@ -312,11 +312,11 @@ var/www/html/
     $aArray = array("name" => "Brian", "id" => 20);
 
     foreach($regArray as $grade){
-        echo "You got a $grade`<br />`";
+        echo "You got a $grade `<br />`";
     }
 
     foreach($aArray as $key=>$val){
-        echo "$key = $val`<br />`";
+        echo "$key = $val `<br />`";
     }
     print_r($regArray);
 ?>
@@ -355,9 +355,9 @@ you can inject html code in a post
 
 # 3/19/2026
 
-## Gen AI 
+## Gen AI
 
-can generate vul code. 
+can generate vul code.
 
 It is an assistant, your name is on your code you are responsible for it
 
@@ -386,7 +386,7 @@ hidden input field to check for admin. Admin check is client side
 ## A02 - Security Misconfiguration
 
 - default accounts/pw not changed
-- disclosing stack traces 
+- disclosing stack traces
 - not hardening apps or os
 - uneeded services are running
 
@@ -428,10 +428,10 @@ openSSF has tool to check supply chain
 - insecure num gen
 - storing secrets in the clear
 
-### Prevention 
+### Prevention
 
 1. use most updated practices
-2. don't roll own encryption 
+2. don't roll own encryption
 
 ### In Class code Excercise
 
@@ -448,15 +448,14 @@ user input not validated or sanitzed
 - use frameworks/APIs for queries
 - always validate and sanitize, don't directly use user input
 
-
 ### SQLi - SQL Injection
 
 - use parameterized queries/bind parameters
 - **don't concat strings directly into queries**
 
-### In-class code 
+### In-class code
 
-PHP - use `prepare` and `bind_param` to create queries 
+PHP - use `prepare` and `bind_param` to create queries
 
 `$sql = "INSERT INTO users (name, email, age, address, phone) VALUES ('$name', '$email', $age, '$address', '$phone')";`
 
@@ -478,7 +477,7 @@ user supplied data contains JavaScript that executes in browser
 
 #### Prevention
 
-- CSP - Content Security Policy. allowlsit for content 
+- CSP - Content Security Policy. allowlsit for content
 - Make sure no JS or HTML gets sent to user from database
 - Encode data on way out from persisted db, not on way in
 
@@ -510,6 +509,7 @@ $result = $mysqli->query($sql)
 ## A06 - Insecure Design
 
 very broad category - how code is designed and implementation, not the code itself
+
 - disclosing system info
 - no auth at endpoints
 - not applying least priviledge or defense in depth
@@ -517,7 +517,7 @@ very broad category - how code is designed and implementation, not the code itse
 
 ### In-class code
 
-`echo "Error: " ` don't give full error message to user, shows `$stmt` and `phpinfo()` 
+`echo "Error: " ` don't give full error message to user, shows `$stmt` and `phpinfo()`
 
 ## Other Vul
 
@@ -527,12 +527,12 @@ very broad category - how code is designed and implementation, not the code itse
 - default configs with default passwords
 - Session id in url
 - sessions not validated
-  
+
 ### A08 - SW and Data Integrity Failure
 
 Using software without validating signature, libraries from untrusted repositories
 
-### A09 - Security 
+### A09 - Security
 
 log events, but don't log sensitive info (user password)
 
@@ -559,25 +559,27 @@ Handle errors, don't reveal stack traces or error data to client
 never trust user input
 
 use frameworks and lang best practices (ex. ORM)
+
 - shouldnt be writing raw SQL
 
 Stay up to date on new threats and vuls
 
 Monitor CVE and NVD
 
-continous review OWASP 
+continous review OWASP
 
 # Authorization and Authentication - 3/24/26
 
-## Identity 
+## Identity
 
-Any entity that is unique 
+Any entity that is unique
 
 Distinguishing element
 
 ### Identity in Computer System
 
 Any entity that can be verified
+
 - DNS, WIFI, User, servers
 
 ### How do we verify?
@@ -588,15 +590,16 @@ Passwords, certificates, tokesn, biometrics, examine proof
 
 Buy data on darkweb, spoofing, stealing creds
 
-## Authentication 
+## Authentication
 
 process to determinie wther identity is the identity the claim to be
 
-### Auth Factors 
+### Auth Factors
 
 Most common ways to auth:
 
 #### something you know
+
 - password
 - challenge questions
 - PIN
@@ -636,12 +639,11 @@ cost to implement, can clone data, lost/stolen device replacement
 #### Other ways
 
 - something you do (gesture, gait)
-    - perform gesture
-    - gait
-    - physical signature/hand writing
 
+  - perform gesture
+  - gait
+  - physical signature/hand writing
 - Where you are (GPS location, source IP)
-
 
 ### Authentication Mechanisms
 
@@ -656,7 +658,8 @@ not strong enough
 #### Multi-Factor Authetication (MFA) - also 2-Factor Auth
 
 Combine 2 of 3
-- something you know 
+
+- something you know
 - something you are
 - something you have
 
@@ -665,16 +668,19 @@ Combine 2 of 3
 Not specific to MFA/2FA
 
 Perform auth using diff channel
+
 - receive phone call or text with token
 
 ##### Problems
 
 If you are authing from phone, it's not out-of-band to receive text since you're on the same device
+
 - PCI standard says no
 
 ### Mutual Authentication
 
 Entity authentication client AND client auths entity
+
 - accessing web app, certain WiFi networks
 
 Digital Certs. commonly used for this
@@ -682,9 +688,9 @@ Digital Certs. commonly used for this
 SSH - need to verify host/server then host verifies key
 
 #### If you don't auth server
+
 - MITM attack
 - connect to malicious server
-
 
 ### Password
 
@@ -694,7 +700,7 @@ adding 1 bit can double time to guess
 
 #### Good Password Policy
 
-- just go for length 
+- just go for length
 - don't force password changes
 - don't force random characters, upper/lower case, numbers, etc.
 - use password manager
@@ -740,11 +746,11 @@ based on FIDO - Fast IDentity Online - Standard
 Eliminates password and username.
 
 Uses Public-key crypto
-- private key stays on device 
+
+- private key stays on device
 - public key on server
 - Passkey is unique to username and website
 - Uses secure hardware like TPM (Trusted Platform Module) or Enclave (stores passwords, keys, verify integrity)
-
 
 ### Auth Systems
 
@@ -756,7 +762,7 @@ Auth against DB
 
 #### LDAP - Lightweight Directory Access Protocol
 
-optimized for reads instead of read/write. 
+optimized for reads instead of read/write.
 
 fast auth
 
@@ -770,7 +776,7 @@ Microsoft/Google/Apple, OpenID
 
 #### Single-Sign On
 
-Auth in one system, have access to all systems that trsut it. 
+Auth in one system, have access to all systems that trsut it.
 
 ##### Key Terms
 
@@ -782,60 +788,64 @@ Principle: Identity/Subject who is trying to access service
 
 #### OAuth
 
-related to SSO. 
+related to SSO.
 
-Authorization mechanism. allows you to access other services with account as long as you authorize it. 
+Authorization mechanism. allows you to access other services with account as long as you authorize it.
 
 Only authorization, doesn't authenticate
 
 ---
+
 ## Auth Exercise
 
-PCI DSS 
+PCI DSS
 
 "SMS or voice has been deprecated and may be removed from future releases of their
 publication"
 
 SW Token is "something you have" if its embedded into physical device
---- 
-
+---------------------------------------------------------------------
 
 ## Authorization
 
 Determines if entity can do some action
 
 Access Controls are set by attributes:
+
 - User
 - Role
 - Group
 - other
 
-
-
 ### Access Control Implementation
 
-ACLs - Access Control Lists 
+ACLs - Access Control Lists
+
 - determines access of entity
 - can use to allow/deny access to part or whole system
 
-File System 
+File System
+
 - read/write/execute permissions
 
 Network ACLs
+
 - SSH allows only certain keys
 - allowlist for IP for incoming/outgoing access
 
 #### Issues with ACLs
 
 Can require frequent updates depending on design
+
 - like when system provisioned or user created
 
 New permission model require new schemas
+
 - new role -> new column
 
 Denylist can get lengthy - use allowlists
 
-Limiting users from sharing content that shouldn't be 
+Limiting users from sharing content that shouldn't be
 
 #### Access Control Models
 
@@ -854,6 +864,7 @@ use set of rules - like IP range
 Ownership of data (e.g. update, delete a post)
 
 Others
+
 ##### Attribute-Based
 
 attributes or properties does the entity contain
@@ -868,17 +879,16 @@ seperate group determines who has access
 
 Gov orgs use may this
 
-
-### Best Practices 
+### Best Practices
 
 1. Never assign permissions based on role
 2. Use RBAC (roles-based) for permissions in app
 3. Use ReBAC (relationships-based) for relationships to data
-4. Use existing frameworks 
+4. Use existing frameworks
 
 ### ReCAp
 
-Authentication vs Authorization: who you are vs what you can do 
+Authentication vs Authorization: who you are vs what you can do
 
 identity provider - has credentials vs. service provider - how to sign in/auth
 
@@ -889,4 +899,200 @@ False - 2FA has to be two diff categories not just methods
 False - Set auth based on role
 
 mutual auth - accessing a webpage (both client and server auth each other, digital cert)
+
 - prevent MITM or spoof attack
+
+# Privacy (3/27/26)
+
+unless there is a business case/need, don't store data.
+- don't be liable for breaking privacy laws
+
+Tons of data being tracked and aggregated by all devices. Very little protection and enforcement
+
+## Regulation
+
+- GDPR - General Data protection Regulation 
+- CCPA - California Consumer Privacy Act 
+
+other laws not protective enough
+
+data collect -> profile built -> sold to data brokers
+
+## Web Privacy
+
+HTTP is stateless. servers uses cookies with info to remember
+- cookies not necessarily bad, can have session info on it
+
+### Private Browsing
+
+Each browser contains "fingerprint"
+- IP
+- browser type
+- cookies
+- extensions
+- other props unique to your browser
+
+### DNS
+
+DNS can also leak privacy.
+
+DNS server receives all requests you send. 
+- going through ISP DNS means that ISP knows all requests
+
+[https://dnsleaktest.com/](https://dnsleaktest.com/)
+
+
+### VPNs
+
+adds some hops along way to destination
+- hides IP, but not identity
+
+needs to trust VPN service
+
+### What Can You Do?
+
+- limit use of sites with clickbait
+- don't use Google for search
+- use more private browser
+- install ad blocker
+- other extensions:
+	- ghostery, privacy badger
+	- careful of malicious extensions
+
+## Mobile Privacy
+
+Once data is out there, no way to get rid of it.
+
+Apps request access to location - after giving permission:
+- how often is it read?
+- who else has access?
+- where does it go? where is it stored?
+
+Photos has lots of info
+- location/time/date
+- phone model
+- what camera was used
+
+Contacts info
+
+### Data Misuse
+
+Services use invasive cookies and trackers and collect data unrelated to the service provided.
+
+- Linkedin
+- Weather.com
+- NOAA
+
+### EMPAware Project
+
+shows users real-time use/collection of their raw data and where it is sent:
+- show precise location
+- fingerprints of device
+- monitoring clicks
+- which domains it was sent, including ad/tracking services
+
+could grab info from contacts list
+- name, birthday, contact information
+
+### Trackers in Mobile Apps
+
+top 124 apps in iOS
+- most have 2-8 trackers
+- some had ~22 unique trackers
+- most by google, amazon, meta
+
+### Tracker Categories
+
+1. Action Pixels: collect user specific events
+2. Ad Fraud: to prevent ad fraud
+3. Motivated tracking: ads that include beacons, demographic collection
+4. Advertising
+5. Analytics
+6. Audience Measurement : like analytics but with more demographic and behaviors 
+7. Social Network
+8. Third Party Analytics
+
+### Mobile Carriers
+
+Carrier can track you as well
+
+### Why Can You Do?
+
+- delete social media apps + accounts
+- Dark Patterns - add friction to use
+- review app permissions
+- review data access/sharing
+- disable Ad ID tracking
+- be wary of location sharing
+- limit sharing of personal data (photos)
+- switch search engines to private ones
+- use apps where data isn't their revenue
+
+## Social Media
+
+your data = revenue
+
+doesn't protect your data
+
+more emotional/distressing content is more engaging
+
+### Dark Patterns / Bad Design
+
+feed is like slot machine. swipe down = pull down
+
+Notifications, urgency, emails to go on platform
+
+easy to post. comments and likes for dopamine hits
+
+Easy to create profile, harder to delete
+
+## Data Monetization
+
+Data is auctioned off, sold, traded.
+
+Advertisers "bid" on your ad space - based on demographics, motivations, (male, fitness:depression)
+- happens in milliseconds, winner displays add
+
+## Surveillance
+
+mobile, web, dns can track you
+
+tracking pixels 
+
+### Surveillance Pricing
+
+using personal data for dynamic pricing 
+- charge you based on data collected (ex. higher income -> higher prices)
+
+### AI as surveillance
+
+your data can be used in AI models 
+- influence your opinion
+- better track you
+- figure out personal info/demographics
+- 
+
+## What Can You Do
+
+Use non-ISP DNS
+
+Disconnect TV from internet
+
+Blur home from Maps (google, apple, bing)
+
+
+## Resources:
+
+coveryourtracks.eff.org
+- tests browser privacy
+
+nothingprivate.gkr.pw
+-
+
+ipleak.net
+- shows IP and guess of location
+
+dnsleaktest.com
+- 
+
+pi-hole.net
