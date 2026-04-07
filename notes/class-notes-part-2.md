@@ -532,7 +532,7 @@ very broad category - how code is designed and implementation, not the code itse
 
 Using software without validating signature, libraries from untrusted repositories
 
-### A09 - Security
+### A09 - Security Logging & Alerting Failures
 
 log events, but don't log sensitive info (user password)
 
@@ -905,14 +905,15 @@ mutual auth - accessing a webpage (both client and server auth each other, digit
 # Privacy (3/27/26)
 
 unless there is a business case/need, don't store data.
+
 - don't be liable for breaking privacy laws
 
 Tons of data being tracked and aggregated by all devices. Very little protection and enforcement
 
 ## Regulation
 
-- GDPR - General Data protection Regulation 
-- CCPA - California Consumer Privacy Act 
+- GDPR - General Data protection Regulation
+- CCPA - California Consumer Privacy Act
 
 other laws not protective enough
 
@@ -921,11 +922,13 @@ data collect -> profile built -> sold to data brokers
 ## Web Privacy
 
 HTTP is stateless. servers uses cookies with info to remember
+
 - cookies not necessarily bad, can have session info on it
 
 ### Private Browsing
 
 Each browser contains "fingerprint"
+
 - IP
 - browser type
 - cookies
@@ -936,15 +939,16 @@ Each browser contains "fingerprint"
 
 DNS can also leak privacy.
 
-DNS server receives all requests you send. 
+DNS server receives all requests you send.
+
 - going through ISP DNS means that ISP knows all requests
 
 [https://dnsleaktest.com/](https://dnsleaktest.com/)
 
-
 ### VPNs
 
 adds some hops along way to destination
+
 - hides IP, but not identity
 
 needs to trust VPN service
@@ -956,19 +960,21 @@ needs to trust VPN service
 - use more private browser
 - install ad blocker
 - other extensions:
-	- ghostery, privacy badger
-	- careful of malicious extensions
+  - ghostery, privacy badger
+  - careful of malicious extensions
 
 ## Mobile Privacy
 
 Once data is out there, no way to get rid of it.
 
 Apps request access to location - after giving permission:
+
 - how often is it read?
 - who else has access?
 - where does it go? where is it stored?
 
 Photos has lots of info
+
 - location/time/date
 - phone model
 - what camera was used
@@ -986,17 +992,20 @@ Services use invasive cookies and trackers and collect data unrelated to the ser
 ### EMPAware Project
 
 shows users real-time use/collection of their raw data and where it is sent:
+
 - show precise location
 - fingerprints of device
 - monitoring clicks
 - which domains it was sent, including ad/tracking services
 
 could grab info from contacts list
+
 - name, birthday, contact information
 
 ### Trackers in Mobile Apps
 
 top 124 apps in iOS
+
 - most have 2-8 trackers
 - some had ~22 unique trackers
 - most by google, amazon, meta
@@ -1008,7 +1017,7 @@ top 124 apps in iOS
 3. Motivated tracking: ads that include beacons, demographic collection
 4. Advertising
 5. Analytics
-6. Audience Measurement : like analytics but with more demographic and behaviors 
+6. Audience Measurement : like analytics but with more demographic and behaviors
 7. Social Network
 8. Third Party Analytics
 
@@ -1051,22 +1060,25 @@ Easy to create profile, harder to delete
 Data is auctioned off, sold, traded.
 
 Advertisers "bid" on your ad space - based on demographics, motivations, (male, fitness:depression)
+
 - happens in milliseconds, winner displays add
 
 ## Surveillance
 
 mobile, web, dns can track you
 
-tracking pixels 
+tracking pixels
 
 ### Surveillance Pricing
 
-using personal data for dynamic pricing 
+using personal data for dynamic pricing
+
 - charge you based on data collected (ex. higher income -> higher prices)
 
 ### AI as surveillance
 
-your data can be used in AI models 
+your data can be used in AI models
+
 - influence your opinion
 - better track you
 - figure out personal info/demographics
@@ -1080,19 +1092,51 @@ Disconnect TV from internet
 
 Blur home from Maps (google, apple, bing)
 
-
 ## Resources:
 
 coveryourtracks.eff.org
+
 - tests browser privacy
 
 nothingprivate.gkr.pw
--
+---------------------
 
 ipleak.net
+
 - shows IP and guess of location
 
 dnsleaktest.com
-- 
+---------------
 
 pi-hole.net
+
+# Implementing Autho + Authen in Spring - In Class Demo - 3/31/26
+
+REST - representational state transfer
+
+- standardized systems using HTTP protocol (GET POST PUT etc)
+- 
+
+Gradle
+
+- manages dependencies, need to re-sync everytime dependencies change
+
+Dependency Injection
+
+- give function/object directly
+
+Don't put sensotive info in URL, pass data in reqeust body
+
+# Implementing Autho + Authen in Spring - In Class Demo - 4/2/26
+
+Sidenote Privacy resource: EFF atlas of surveillance
+
+Spring Sec - sec by default
+
+- need to auth, all endpoints shut by default
+- CSRF is defaut in spring sec - need to disable to use postman
+
+Postman - can use basic auth
+
+- insecure over HTTP
+- but is secure over HTTPS, creates auth header with creds
