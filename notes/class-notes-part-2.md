@@ -1140,3 +1140,195 @@ Postman - can use basic auth
 
 - insecure over HTTP
 - but is secure over HTTPS, creates auth header with creds
+
+
+# Compliance and Laws - 4/7/26
+
+# Compliance
+
+various laws and standards need to followed in comp sec.
+
+Usually an org handles this
+ 
+
+## Regulatory Compliance
+
+deals with specific industries and laws relative to it
+
+train employees, get certs
+
+## Industry Compliance 
+
+Not laws, but industry standards
+
+PCI DSS
+
+## PCI-DSS - Payment Card Industry Data Security Standard
+
+might be on exam
+
+Rules created Visa, Mastercard, American Express
+
+defines sec req for an org
+
+### In-class exercise
+
+**1.2.5** - All services, protocols, and ports allowed are
+identified, approved, and have a defined business
+need
+- use nmap to identify all ports
+
+**4.2.1** - Strong cryptography and security protocols are implemented as follows to safeguard PAN during transmission over open, public networks:
+- can use internal self-signed cert. 
+- external CA - need to communicate with external servers
+
+**6.2.3** - Bespoke and custom software is reviewed prior to being released into production or to customers, to identify and correct potential coding vulnerabilities, as follows:
+- Code reviews ensure code is developed according to secure coding guidelines.
+- Code reviews look for both existing and emerging software vulnerabilities.
+- Appropriate corrections are implemented prior to release
+
+## Compliance Failure
+
+can get fined or lose business if not in compliance
+
+Trust is hard to regain when failures happen
+
+PCI-DDS non-compliance can block ability to process cards
+
+## Info Sec Policy
+
+Orgs need well defined policies that are easy to find
+
+Each policy should address a diff area of compliance
+- have date of creation, updated, by whom
+
+## Controls
+
+Used to stay in compliance
+
+3 Categories 
+- Technical: firewalls, OS hardening, ACLs, IDS, etc.
+- Administrative: process/procedures like change control systems, ticketing systems
+- Physical: Badges to access a space/boundry, cameras, security guards and checkpoint
+
+
+## Control Types
+
+Key Controls (Primary Controls)
+- Vital control - stands alone to mitigate risks
+- Failure means risk not mitigate and compliance failure
+
+Compensating Controls
+- controls when you are not in compliance
+- can bebridge to compliance
+- Ex. segregating network - maybe not immediately feasible, but can be implemented in future
+
+## Maintaining Compliance
+
+**Monitor -> Review -> Document -> Report**
+
+**Monitor**
+- Continously monitor and review controls you have 
+- Log activity, aggredate control data
+
+**Review**
+- controls still effective?
+- what new risk change effectivenes of control
+- what new attacks are you not monitoring
+
+**Document**
+- document findings from review - good to show auditors you're actively working on your controls
+- what changes have been made historically
+
+**Report**
+- share findings to leadership, demonstrate value
+
+# Laws
+
+Diff laws in diff countries - need to stay compliant with ever changing laws
+
+Newly passed laws will impact org policies
+
+## In-class NIST Exercise
+
+not on exam
+
+## FISMA - Federal Information Security Management Act
+
+- Compliance for businesses that administer federal programs (includes orgs that receive grants)
+- Sec controls must implemented using risk-based approach
+- Data must be protected
+- Org must pass an audit to be authorized to operate
+
+## FedRAMP - Federal Risk and Authorization Management Program
+
+- focus cloud providers
+- Gov orgs must follow specific rules for cloud providers
+- cloud providers must get authorization 
+
+## HIPAA - Health Insurance Portability and Accountability
+
+- For health data
+- PHI - Protected Health Info has specific reqs for storage and safeguarding
+- includes req for protecting data integrity and availability
+
+## Financial Acts
+
+SOX - Sarbanes-Oxely Act
+- Regulation specific to financial reporting and assets
+- response to Enron
+
+GLBA - Gramm-Leach-Bliley Act
+- protect PII - personal identifiable info
+- focus on financial orgs
+- must protect info and notifiy customers when info is shared
+
+## CIPA - Childrens Internet Protection Act
+- prevent kids from accessing harmful or obscene internet content
+- low-cost internet access is provided to eligible institutions to help them with compliance
+
+## COPPA - Children's Online Privacy Protection Act
+- can't collect PII or use trackers for kids younger than 13
+- Privacy Policy must be shared
+- Parent consent for younger
+
+What official IDs do kids have? How do you stay compliant?
+
+## FERPA - Family Education Rights and Privacy Acts
+
+Parents do not have access to student records unless student gives permissions
+
+## GDPR - General Data Protection Regulation (EU only)
+- consent before collecting data
+- right to be forgotten: ask orgs to delete personal data
+- right to data portability: you can download your personal data in some common format
+- cookie prompts
+
+Need to be aware of local laws for compliance
+
+gdpr.eu
+
+### Exercise
+
+Max Fine - 20 million euros or 4% of revenue
+
+## Frameworks
+
+Key Idea: start with what exists, don't start from scratch
+
+provides model for achieving compliances
+
+ISO - internal organization for standardization
+
+NIST - National Institute of Standards and Technology
+
+# Compliance in Emerging Areas
+
+Cloud Computing 
+- who is responsible 
+- Iaas -> SaaS (infrastructer or service provider responsible?)
+
+IoT
+- more scrutiny on devices that have default PWs
+- Set standards for IoT: how data is collected, maintained, shared
+
