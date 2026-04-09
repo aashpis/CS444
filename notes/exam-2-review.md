@@ -143,6 +143,8 @@ Prevention:
 - string concatination of SQL query
 - XSS: htmlspecialchars for input of posting a new camp. how do we prevent it
 - path traversal:  GET request use user-inputed variable to GET something from the server
+- don't hard code user creds
+- don't pass username and pw back and forth, use sessions
 - know stuff we did in class/assignments
 
 **Review questions from podcast in assignment**
@@ -154,7 +156,7 @@ Content Security Policies can be one of the best ways to stop XSS attacks
 
 Focus on top 6 of the top 10, know what they are, how to prevent them, and how to spot them
 
-1. Broken Access Control:
+## Broken Access Control:
 
 - Not implementing access control, permitting users that should not be permitted. users can access things they shouldn't
 
@@ -164,7 +166,7 @@ Focus on top 6 of the top 10, know what they are, how to prevent them, and how t
 - use allowlist, deny everything else
 - log failures - can find malicious or unintended activity
 
-2. Security Misconfiguration
+## Security Misconfiguration
 
 - Example: Framework configuration, OS configuration, showing more information than necessary.
 - default accounts and PWs not changed
@@ -184,10 +186,11 @@ Focus on top 6 of the top 10, know what they are, how to prevent them, and how t
 - limit file upload size and type
 - turn off ability to execute external programs
 
-3. Software Supply Chain Failure
+## Software Supply Chain Failure
 
 - Example: Using a library that has a vulnerability, not verifying the libraries/dependencies you are including
 - Not updating dependencies when theres a vulnerability
+- installing wrong, but similiar named package, nmap vs mmap
 - Not using reliable package manager
 - secure code is not secure if the libraries called are vulnerable
 
@@ -199,7 +202,7 @@ Focus on top 6 of the top 10, know what they are, how to prevent them, and how t
 - always analyze supply chain along with code on pushes
 - don't allow devs to import their dependencies themselves
 
-4. Cryptographic Failures
+## Cryptographic Failures
 
 - Example: Using older hash algorithm, insecure encryption
 - No salt with passwords
@@ -213,7 +216,7 @@ Focus on top 6 of the top 10, know what they are, how to prevent them, and how t
 - use salt
 - store cipher text
 
-5. Injection
+## Injection
 
 - Example: SQL injection, path injection, XSS
 - user input not santized or validated
@@ -227,13 +230,13 @@ Focus on top 6 of the top 10, know what they are, how to prevent them, and how t
 - always validate and sanitize input.
 - use parameterize queries, never concatination
 
-**XXS Preventions:**
+**XSS Preventions:**
 
 - use CSP - Content Security Policy. allowlist for what content is allowed
 - ensure html/css/js is never sent from database
 - encode data on way out from database, not on way in.
 
-6. Insecure Design
+## Insecure Design
    Example: Failure to authenticate an endpoint, failure to perform input validation, not applying principle of least privilege
 
 Focus on input validation and examples in PHP that we reviewed
@@ -466,4 +469,98 @@ Follow laws, stay current, use frameworks and guidelines that exist
 - ensure personal privacy
 - Be able to ID vulnerabilities and fixes
 - vul assesment vs pen test: vul assesment just finds, pen test also exploits
--
+
+
+# Quiz Questions
+
+Attacking Juice Shop, what did the SQL injection attack accomplish? - login as admin user
+
+Which of the following features is available in Burp Suite free edition? - Proxy
+
+Which of the following features did we use in class that is included in Zed Attack Proxy? - Proxy and Web Scanner
+
+Client side validation cannot be bypassed using Burp Suite, we need to use Zed Attack Proxy. - False
+
+
+Which of the following are valid factors for authentication with a multi-factor authentication solution? (Check all that apply)
+- something you are 
+- something you have
+- something you know
+
+Which of the following authorization models is based on what your job function would be in an organization? - role based RBAC
+
+According to the PCI DSS multi-factor authentication recommendations, a software token is an acceptable factor in a multi-factor authentication solution. - TRUE
+
+Which of the following would best describe what mutual authentication is? - The process of authenticating both the client and the service the client is authenticating to.
+
+---
+
+PODCAST QUIZ
+
+SSH Backdoor Podcast: According to the interviewee, the vulnerability they discussed would have been detected using logs from SSH. - False
+
+SSH Backdoor Podcast or YouTube Video: The code contributor, according to the interview, used different time zones to try to hide their identity. - True
+
+SSH Backdoor Podcast: Kali linux, an operating system used by security experts, was vulnerable to the backdoor described in the podcast. - True
+
+Secure Coding Podcast: According to the interviewee, which tools would a professional pen tester use that we also used in class? Burp and Zap
+
+Secure Coding Podcast: The interviewee mentions that Content Security Policies can be one of the best ways to stop XSS attacks. - True
+
+---
+
+Assume we have a 32 byte array and the user enters more than 32 characters or is able to read beyond 32 characters. What type of attack is this an example of? - Buffer Overflow
+
+The blue team is typically the team that is defending a network or set of applications. - True (red is offensive)
+
+Which of the following environments should you NEVER perform an application penetration test in? - Production
+
+Which of the following should never be trusted when creating an application? - user input
+
+---
+
+# REVIEW SESSION
+
+know acroynms 
+
+know spring security info - why use spring sec and what general functions
+
+use a frameworks
+
+Two things you should keep in mind for dev secure software 
+
+Supply Chain Failure vs Attack
+
+Two Orgs that provide frameworks for compliance - NIST and ISO
+
+Burp/Zap what did we use to intercept packets - A proxy
+
+comprimised actor - social engineering
+
+Administrative control - form of control on cotrnolling porcess you followa and document 
+
+Know 3 controls and differences
+
+Compensating controls 
+
+Look at HW/in-class vulnerabilities
+
+PHP functions:
+- password_hash()
+- htmlspecialchar() -> escape rendered input
+- unsanitzed input
+
+Bad code
+
+```php
+$sql = "INSERT INTO users (name, email, age, address, phone) VALUES ('$name', '$email', $age, '$address', '$phone')";
+```
+
+Turn into secure code:
+
+```php
+$sql = "INSERT INTO users (name, email, age, address, phone) VALUES ('?', '?', ?, '?', '?')";
+$stmt = $conn->prepare($sql)
+$stmt->bind_param("ssiss, '$name', '$email', $age, '$address', '$phone)
+```
+
