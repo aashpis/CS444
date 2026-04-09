@@ -33,11 +33,21 @@ create effective reports
 
 ### Vulnerability Assesment Reporting
 
+When you find a vul, you need to report it
+
+assess risk and include ways to fix
+
+Check NVD - National Vulnerability Database for vulnerability
+
+Check CWE - Common Weakness Enumeration -> NVD is particular examples of CWE in software
+
 ## Penetration Testing
 
 always have permissions for a pen test
 
 "Only amateurs attack machines; profesisonals target people"
+
+Scope -> Recon -> Discovery -> Exploit -> Report
 
 ### Phase 0: What is the Scope?
 
@@ -465,7 +475,7 @@ Don't give error data to client
 if ($stmt->execute()) {
     echo "New record created successfully";
 } else {
-    echo "Error: " . $stmt->error; // HERE
+    echo "Error: " . $stmt->error; // HERE is vul
 }
 ```
 
@@ -776,7 +786,7 @@ Microsoft/Google/Apple, OpenID
 
 #### Single-Sign On
 
-Auth in one system, have access to all systems that trsut it.
+Auth in one system, have access to all systems that trust it.
 
 ##### Key Terms
 
@@ -886,7 +896,7 @@ Gov orgs use may this
 3. Use ReBAC (relationships-based) for relationships to data
 4. Use existing frameworks
 
-### ReCAp
+### Recap
 
 Authentication vs Authorization: who you are vs what you can do
 
@@ -1141,7 +1151,6 @@ Postman - can use basic auth
 - insecure over HTTP
 - but is secure over HTTPS, creates auth header with creds
 
-
 # Compliance and Laws - 4/7/26
 
 # Compliance
@@ -1149,7 +1158,6 @@ Postman - can use basic auth
 various laws and standards need to followed in comp sec.
 
 Usually an org handles this
- 
 
 ## Regulatory Compliance
 
@@ -1157,7 +1165,7 @@ deals with specific industries and laws relative to it
 
 train employees, get certs
 
-## Industry Compliance 
+## Industry Compliance
 
 Not laws, but industry standards
 
@@ -1176,13 +1184,16 @@ defines sec req for an org
 **1.2.5** - All services, protocols, and ports allowed are
 identified, approved, and have a defined business
 need
+
 - use nmap to identify all ports
 
 **4.2.1** - Strong cryptography and security protocols are implemented as follows to safeguard PAN during transmission over open, public networks:
-- can use internal self-signed cert. 
+
+- can use internal self-signed cert.
 - external CA - need to communicate with external servers
 
 **6.2.3** - Bespoke and custom software is reviewed prior to being released into production or to customers, to identify and correct potential coding vulnerabilities, as follows:
+
 - Code reviews ensure code is developed according to secure coding guidelines.
 - Code reviews look for both existing and emerging software vulnerabilities.
 - Appropriate corrections are implemented prior to release
@@ -1200,25 +1211,28 @@ PCI-DDS non-compliance can block ability to process cards
 Orgs need well defined policies that are easy to find
 
 Each policy should address a diff area of compliance
+
 - have date of creation, updated, by whom
 
 ## Controls
 
 Used to stay in compliance
 
-3 Categories 
-- Technical: firewalls, OS hardening, ACLs, IDS, etc.
+3 Categories
+
+- Technical: firewalls, OS hardening, ACIs, IDS, etc.
 - Administrative: process/procedures like change control systems, ticketing systems
 - Physical: Badges to access a space/boundry, cameras, security guards and checkpoint
-
 
 ## Control Types
 
 Key Controls (Primary Controls)
+
 - Vital control - stands alone to mitigate risks
 - Failure means risk not mitigate and compliance failure
 
 Compensating Controls
+
 - controls when you are not in compliance
 - can bebridge to compliance
 - Ex. segregating network - maybe not immediately feasible, but can be implemented in future
@@ -1228,19 +1242,23 @@ Compensating Controls
 **Monitor -> Review -> Document -> Report**
 
 **Monitor**
-- Continously monitor and review controls you have 
+
+- Continously monitor and review controls you have
 - Log activity, aggredate control data
 
 **Review**
+
 - controls still effective?
 - what new risk change effectivenes of control
 - what new attacks are you not monitoring
 
 **Document**
+
 - document findings from review - good to show auditors you're actively working on your controls
 - what changes have been made historically
 
 **Report**
+
 - share findings to leadership, demonstrate value
 
 # Laws
@@ -1264,9 +1282,9 @@ not on exam
 
 - focus cloud providers
 - Gov orgs must follow specific rules for cloud providers
-- cloud providers must get authorization 
+- cloud providers must get authorization
 
-## HIPAA - Health Insurance Portability and Accountability
+## HIPAA - Health Insurance Portability and Accountability Act
 
 - For health data
 - PHI - Protected Health Info has specific reqs for storage and safeguarding
@@ -1275,19 +1293,23 @@ not on exam
 ## Financial Acts
 
 SOX - Sarbanes-Oxely Act
+
 - Regulation specific to financial reporting and assets
 - response to Enron
 
 GLBA - Gramm-Leach-Bliley Act
+
 - protect PII - personal identifiable info
 - focus on financial orgs
 - must protect info and notifiy customers when info is shared
 
 ## CIPA - Childrens Internet Protection Act
+
 - prevent kids from accessing harmful or obscene internet content
 - low-cost internet access is provided to eligible institutions to help them with compliance
 
 ## COPPA - Children's Online Privacy Protection Act
+
 - can't collect PII or use trackers for kids younger than 13
 - Privacy Policy must be shared
 - Parent consent for younger
@@ -1299,6 +1321,7 @@ What official IDs do kids have? How do you stay compliant?
 Parents do not have access to student records unless student gives permissions
 
 ## GDPR - General Data Protection Regulation (EU only)
+
 - consent before collecting data
 - right to be forgotten: ask orgs to delete personal data
 - right to data portability: you can download your personal data in some common format
@@ -1318,17 +1341,20 @@ Key Idea: start with what exists, don't start from scratch
 
 provides model for achieving compliances
 
+### Provider of Frameworks
+
 ISO - internal organization for standardization
 
 NIST - National Institute of Standards and Technology
 
 # Compliance in Emerging Areas
 
-Cloud Computing 
-- who is responsible 
+Cloud Computing
+
+- who is responsible
 - Iaas -> SaaS (infrastructer or service provider responsible?)
 
 IoT
+
 - more scrutiny on devices that have default PWs
 - Set standards for IoT: how data is collected, maintained, shared
-
