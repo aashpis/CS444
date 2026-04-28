@@ -81,13 +81,14 @@ class focus - non-traditional device
 ## Challenges
 
 Challenge to update
+
 - limited write space
 - how to perform update (securely)
 - update certs not just SW
 - limited physical access
 - how to verify update from trusted source
 
-Limited knowledge - devs make space 
+Limited knowledge - devs make space
 
 Less resources - less secure implementations of RNG and encryption
 
@@ -115,9 +116,7 @@ Configure router via web app
 
 What if you could update a device without authentication or authorization
 
- 
 ## Other 10
-
 
 ### 4. Lack of Secure Update Mechanism
 
@@ -135,15 +134,15 @@ devices store/transmit data without proper user protections
 
  Lack of confidentiality in storing or transferring data
 
-### 8. Lack of Device Management 
+### 8. Lack of Device Management
 
-managing, provision, decomissioning active devices 
+managing, provision, decomissioning active devices
 
 ### 9. Insecure Default Settings
 
 devices are insecure by default or user can't take action to secure their devices
 
-### 10. Lack of Physical Hardening 
+### 10. Lack of Physical Hardening
 
 devices can take control of devices with physical access, like an SD card
 
@@ -159,21 +158,22 @@ Dominant Platform
 
 Contains tons of personal and sensitive data, not guarenteed to be stored securely
 
-data is monetized 
+data is monetized
 
 ## OWASP Top 10 Mobile
 
 ### 1. Improper Credential Usage
 
-hardcoded credentials within the application 
+hardcoded credentials within the application
 
   storing w/o encryption
 
-easy to discover 
+easy to discover
 
 can unpack APKs or explore iOS file system
 
-Utilize best practices provided by mobile OS 
+Utilize best practices provided by mobile OS
+
 - iOS - keychain
 - Android - Credential Manager
 
@@ -192,26 +192,27 @@ most apps use a backend services - can examine with Burp Suite
 service may think the call is coming from mobile client when it can come from replay attack
 
 other attacks can bypass authentication or authorization in the app itself
-- can escalte privilege 
+
+- can escalte privilege
 - change config to say you "purchases" an add-on
 
 do auth on both sides
 
 ## Other 10
 
-### 4. Insufficient Input/Output Validation 
+### 4. Insufficient Input/Output Validation
 
 Similar to web
 
-### 5. Insecure Communication 
+### 5. Insecure Communication
 
 Similar to IoT! This is easier to fix with regular updates
 
-### 6. Inadequate Privacy Controls 
+### 6. Inadequate Privacy Controls
 
 Similar to IoT
 
-### 7. Insufficient Binary Protections 
+### 7. Insufficient Binary Protections
 
 attacking the application binary by finding keys or repackaging it and distributing it
 
@@ -219,16 +220,15 @@ attacking the application binary by finding keys or repackaging it and distribut
 
 Includes provisioning, decommissioning devices
 
-### 9. Security Misconfiguration 
+### 9. Security Misconfiguration
 
 Insecure default settings, default passwords,
 
 unprotected storage of keys or username/passwords
 
-### 10.Insufficient Cryptography 
+### 10.Insufficient Cryptography
 
 Using weak encryption, no salts, small keys
-
 
 ## Device and App Protections
 
@@ -238,7 +238,7 @@ Device level encryption where separate keys are used to encrypt files, separate 
 
 A key encrypts a high level key or a set of keys using the user's passcode or biometrics
 
-### Secure Enclave 
+### Secure Enclave
 
 use true RNG
 
@@ -259,3 +259,22 @@ extra layer protection, secures data in app
 ### Certificate Pinning
 
 install cert locally in application to prevent MITM attack
+
+# Class Notes 4/23/2026
+
+symmetric is quantum safe, aysmmetric is not
+
+exam
+
+- Know some code (PHP, injection)
+- know main top 10 points
+- know specific files from OS hardening/config assignment
+- review password manager and server
+
+OS hardening
+
+- sshd_config - how you ssh into server (key, password), how many tries you get, how many sessions
+- access.conf - specificy accounts that can remote in
+- host.allow - IPs that can shh in
+
+Password hardening
